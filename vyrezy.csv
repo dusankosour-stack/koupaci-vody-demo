@@ -1,0 +1,39 @@
+vyrez,nazev,typ,rozliseni,kody,bbox,zdroj_bbox
+brnenska_celek,Brněnská přehrada – celá nádrž,celek,1024,KO620301;KO620302;KO620303;KO620304;KO620305,"[16.4395236, 49.2243717, 16.5246514, 49.27525]",rucne
+dalesicka_celek,Dalešická přehrada – celá nádrž,celek,1024,KO611301,"[15.9847642, 49.1161303, 16.1382294, 49.2024575]",rucne
+letovice_celek,VN Letovice – celá nádrž,celek,1024,KO620202,"[16.5042867, 49.5485194, 16.5599939, 49.5673842]",rucne
+vranovska_celek,Vranovská přehrada – celá nádrž,celek,1024,KO622003,"[15.6951714, 48.9020792, 15.8405686, 48.9467444]",rucne
+bystricka,VN Bystřička,lokalni,512,KO721201;KO721202,"[18.0059, 49.4066, 18.0399, 49.4389]",auto
+ko530601,rybník Dlouhý u Lanškrouna,lokalni,512,KO530601,"[16.5767, 49.9039, 16.6067, 49.9339]",auto
+ko530801,VN Březina,lokalni,512,KO530801,"[16.5895, 49.636, 16.6195, 49.666]",auto
+ko531201,rybník Rosnička,lokalni,512,KO531201,"[16.4395, 49.7565, 16.4695, 49.7865]",auto
+ko610101,Domanínský rybník,lokalni,512,KO610101,"[16.1904, 49.5301, 16.2204, 49.5601]",auto
+ko610801,rybník Medlov,lokalni,512,KO610801,"[16.0377, 49.6019, 16.0677, 49.6319]",auto
+ko610802,rybník Sykovec,lokalni,512,KO610802,"[16.022, 49.5947, 16.052, 49.6247]",auto
+ko610803,Rybník Koupaliště Nové Město na Moravě,lokalni,512,KO610803,"[16.0513, 49.564, 16.0813, 49.594]",auto
+ko611001,Lom Horní Cerekev,lokalni,512,KO611001,"[15.3158, 49.2978, 15.3458, 49.3278]",auto
+ko611201,Malý pařezitý rybník,lokalni,512,KO611201,"[15.3797, 49.2276, 15.4097, 49.2576]",auto
+ko611202,Velký pařezitý rybník,lokalni,512,KO611202,"[15.3645, 49.2122, 15.3945, 49.2422]",auto
+ko611301,Dalešická přehrada - Koněšínská pláž,lokalni,512,KO611301,"[16.0281, 49.1643, 16.0581, 49.1943]",auto
+ko620101,VN Palava,lokalni,512,KO620101,"[16.6431, 49.3517, 16.6731, 49.3817]",auto
+ko620202,VN Letovice - Vranová,lokalni,512,KO620202,"[16.5227, 49.5412, 16.5527, 49.5712]",auto
+ko620301,VN Brněnská přehrada - Rakovec,lokalni,512,KO620301,"[16.4952, 49.2135, 16.5252, 49.2435]",auto
+ko620302,VN Brněnská přehrada - Rokle,lokalni,512,KO620302,"[16.479, 49.2335, 16.509, 49.2635]",auto
+ko620303,VN Brněnská přehrada - Sokolské koupaliště,lokalni,512,KO620303,"[16.4958, 49.2272, 16.5258, 49.2572]",auto
+ko620304,VN Brněnská přehrada - Kozí horka,lokalni,512,KO620304,"[16.4914, 49.2228, 16.5214, 49.2528]",auto
+ko620305,VN Brněnská přehrada - Osada,lokalni,512,KO620305,"[16.4843, 49.232, 16.5143, 49.262]",auto
+ko621802,VN Lučina,lokalni,512,KO621802,"[17.3781, 48.847, 17.4081, 48.877]",auto
+ko622003,Vranovská přehrada - pláž Vranov,lokalni,512,KO622003,"[15.8013, 48.8974, 15.8313, 48.9274]",auto
+ko710801,VN Plumlov,lokalni,512,KO710801,"[17.0154, 49.4525, 17.0454, 49.4825]",auto
+ko720501,Pahrbek Napajedla,lokalni,512,KO720501,"[17.4964, 49.1417, 17.5264, 49.1717]",auto
+ko720502,Štěrkáč Otrokovice,lokalni,512,KO720502,"[17.498, 49.2115, 17.528, 49.2415]",auto
+ko720601,VN Horní Bečva,lokalni,512,KO720601,"[18.3008, 49.4057, 18.3308, 49.4357]",auto
+ko721101,VN Všemina,lokalni,512,KO721101,"[17.8428, 49.2748, 17.8728, 49.3048]",auto
+ko721203,Nový Hrozenkov,lokalni,512,KO721203,"[18.2032, 49.3293, 18.2332, 49.3593]",auto
+ko812001,rybník Tvrdkov,lokalni,512,KO812001,"[17.1735, 49.8833, 17.2035, 49.9133]",auto
+luhacovice,VN Luhačovice,lokalni,512,KO720401;KO720402,"[17.7602, 49.1064, 17.7993, 49.1401]",auto
+nm_laguny,Nové Mlýny – laguny 1 a 2,lokalni,512,PK621351;PK621352,"[16.5499, 48.881, 16.5884, 48.9146]",auto
+pk620251,Suchý rybník,lokalni,512,PK620251,"[16.7428, 49.4672, 16.7728, 49.4972]",auto
+pk621951,koupaliště Luleč,lokalni,512,PK621951,"[16.9079, 49.2429, 16.9379, 49.2729]",auto
+pk720751,přírodní koupaliště Albatros,lokalni,512,PK720751,"[17.4181, 48.9966, 17.4481, 49.0266]",auto
+podebrady,Poděbrady (jezero),lokalni,512,KO710701;KO710702,"[17.2116, 49.6081, 17.245, 49.6428]",auto

@@ -1,0 +1,10 @@
+# Whitelist: do repozitáře jde jen to, co potřebuje Streamlit appka.
+# Vše ostatní (.env, collector, poznámky, docx, ...) zůstává jen lokálně.
+/*
+!/.gitignore
+!/app.py
+!/requirements.txt
+!/lokality.csv
+!/vyrezy.csv
+!/snimky.csv
+!/snimky/
