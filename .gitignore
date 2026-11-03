@@ -3,6 +3,7 @@
 /*
 !/.gitignore
 !/app.py
+!/viewer.html
 !/requirements.txt
 !/lokality.csv
 !/vyrezy.csv

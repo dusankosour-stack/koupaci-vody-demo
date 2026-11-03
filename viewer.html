@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="cs"><head><meta charset="utf-8">
+<style>
+  :root { --fg:__FG__; --muted:__MUTED__; --bg:__BG__; --line:__LINE__; --accent:#ff4b4b; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background:transparent; color:var(--fg);
+    font-family:"Source Sans Pro","Source Sans 3",-apple-system,"Segoe UI",Roboto,sans-serif; }
+  .slider { display:flex; align-items:center; gap:12px; height:40px; }
+  .slider span { font-size:13px; color:var(--muted); white-space:nowrap; }
+  input[type=range] { flex:1; accent-color:var(--accent); height:24px; cursor:pointer; }
+  .row { display:flex; gap:32px; margin-top:8px; }
+  .imgbox { flex:0 0 40%; aspect-ratio:__ASPECT__; max-height:__IMG_H__px; cursor:zoom-in; }
+  .imgbox img { width:100%; height:100%; object-fit:contain; object-position:top center;
+    display:block; border-radius:4px; }
+  .info { flex:1; min-width:0; }
+  h2 { margin:0 0 4px; font-size:1.75rem; font-weight:600; line-height:1.2; }
+  .popis { color:var(--muted); font-size:14px; margin-bottom:18px; }
+  .datum { font-size:1.5rem; font-weight:600; margin:0 0 4px; }
+  .pct { margin:0 0 18px; }
+  .btns { display:flex; gap:8px; flex-wrap:wrap; }
+  button { flex:1 1 140px; padding:8px 12px; font-size:15px; border-radius:8px; cursor:pointer;
+    border:1px solid var(--line); background:transparent; color:var(--fg); }
+  button:hover { border-color:var(--accent); color:var(--accent); }
+  button.stop { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .hint { margin-top:14px; font-size:13px; color:var(--muted); }
+  #full:fullscreen { background:#000; display:flex; align-items:center; justify-content:center; }
+  #full:fullscreen img { max-width:100vw; max-height:100vh; object-fit:contain; }
+  @media (max-width:700px) { .row { flex-direction:column; } .imgbox { flex-basis:auto; width:100%; } }
+</style></head>
+<body>
+  <div class="slider">
+    <span id="first"></span>
+    <input id="rng" type="range" min="0" step="1" aria-label="Datum snímku">
+    <span id="last"></span>
+  </div>
+  <div class="row">
+    <div class="imgbox" id="full" title="Kliknutím plná velikost"><img id="img" alt=""></div>
+    <div class="info">
+      <h2 id="title"></h2>
+      <div class="popis" id="popis"></div>
+      <div class="datum" id="datum"></div>
+      <div class="pct" id="pct"></div>
+      <div class="btns">
+        <button id="play">▶ Start animace</button>
+        <button id="zoom">🔍 Plná velikost</button>
+        <button id="dl">⬇ Stáhnout PNG</button>
+      </div>
+      <div class="hint">Posuvník lze táhnout i ovládat šipkami ← →.</div>
+    </div>
+  </div>
+<script>
+const D = __DATA__;                       // {title, popis, vyrez, delay, items:[{d, f, p, src}]}
+const it = D.items, rng = document.getElementById('rng'), img = document.getElementById('img');
+const playBtn = document.getElementById('play');
+document.getElementById('title').textContent = D.title;
+document.getElementById('popis').textContent = D.popis;
+document.getElementById('first').textContent = it[0].d;
+document.getElementById('last').textContent = it[it.length - 1].d;
+rng.max = it.length - 1;
+
+// předem dekódovat všechny snímky -> přepnutí bez prodlevy
+it.forEach(x => { const i = new Image(); i.src = x.src; });
+
+let cur = it.length - 1, timer = null;
+function show(i) {
+  cur = Math.max(0, Math.min(it.length - 1, i));
+  const x = it[cur];
+  img.src = x.src;
+  rng.value = cur;
+  document.getElementById('datum').textContent = x.d;
+  document.getElementById('pct').innerHTML = 'Oblačnost / bez dat ve výřezu: <b>' + x.p + ' %</b>';
+}
+function stop() {
+  if (timer) { clearInterval(timer); timer = null; }
+  playBtn.textContent = '▶ Start animace'; playBtn.classList.remove('stop');
+}
+function start() {
+  if (cur >= it.length - 1) show(0);            // na konci -> od začátku
+  playBtn.textContent = '⏹ Stop'; playBtn.classList.add('stop');
+  timer = setInterval(() => {
+    if (cur >= it.length - 1) { stop(); return; }   // jeden průchod
+    show(cur + 1);
+  }, D.delay);
+}
+rng.addEventListener('input', () => { stop(); show(+rng.value); });
+playBtn.addEventListener('click', () => timer ? stop() : start());
+document.addEventListener('keydown', e => {
+  if (e.target === rng) return;                 // šipky na posuvníku řeší prohlížeč
+  if (e.key === 'ArrowRight') { stop(); show(cur + 1); }
+  if (e.key === 'ArrowLeft')  { stop(); show(cur - 1); }
+});
+
+function openFull() {
+  const box = document.getElementById('full');
+  const fallback = () => fetch(img.src).then(r => r.blob())
+        .then(b => window.open(URL.createObjectURL(b), '_blank'));
+  if (box.requestFullscreen) box.requestFullscreen().catch(fallback); else fallback();
+}
+document.getElementById('full').addEventListener('click', () => {
+  if (document.fullscreenElement) document.exitFullscreen(); else openFull();
+});
+document.getElementById('zoom').addEventListener('click', openFull);
+
+document.getElementById('dl').addEventListener('click', () => {
+  const c = document.createElement('canvas'), s = new Image();
+  s.onload = () => {
+    c.width = s.naturalWidth; c.height = s.naturalHeight;
+    c.getContext('2d').drawImage(s, 0, 0);
+    c.toBlob(b => {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(b);
+      a.download = D.vyrez + '_' + it[cur].f + '.png';
+      document.body.appendChild(a); a.click(); a.remove();
+    }, 'image/png');
+  };
+  s.src = it[cur].src;
+});
+
+show(D.start != null ? D.start : cur);
+</script>
+</body></html>
